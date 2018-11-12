@@ -54,12 +54,12 @@ and open the template in the editor.
             cargarMapa();
             var movimiento = setInterval(function () {
                 jugador = moverPersonajes(jugador);
+                comprobarColision(jugador);
                 fantasma1 = moverPersonajes(fantasma1);
                 fantasma2 = moverPersonajes(fantasma2);
                 fantasma3 = moverPersonajes(fantasma3);
                 borrarBody();
                 cargarMapa();
-
             }, 1000);
             function cargarMapa() {
                 document.write("<h1>PACMAN 2</h1>");
@@ -146,11 +146,12 @@ and open the template in the editor.
                         auxiliarVertical2 -= 1;
                         break;
                 }
-                if (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] == " ") {
-                    arrayMapa[personaje[0]][personaje[1]] = " ";
+                if (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] != "x") {
                     if (personaje.length < 4) {
+                        arrayMapa[personaje[0]][personaje[1]] = " ";
                         personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion];
                     } else {
+                        arrayMapa[personaje[0]][personaje[1]] = " ";
                         personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
                     }
                 } else {
@@ -172,7 +173,7 @@ and open the template in the editor.
                                 auxiliarVertical2 -= 1;
                                 break;
                         }
-                    } while (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] != " ");
+                    } while (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] == "x");
                     arrayMapa[personaje[0]][personaje[1]] = " ";
                     if (personaje.length < 4) {
                         personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion];
@@ -181,6 +182,16 @@ and open the template in the editor.
                     }
                 }
                 return personaje;
+            }
+            function comprobarColision(colisionador) {
+                var auxiliarVertical3=colisionador[0];
+                var auxiliarHorizontal3=colisionador[1];
+                switch(colisionador[2]){
+                    case 1:if(auxiliarHorizontal3-1=="P"){alert("Colision")};break;
+                    case 2:if(auxiliarVertical3+1=="P"){alert("Colision")};break;
+                    case 3:if(auxiliarHorizontal3+1=="P"){alert("Colision")};break;
+                    case 4:if(auxiliarVertical3-1=="P"){alert("Colision")};break;
+                }
             }
             function borrarBody() {
                 document.body.innerHTML = "";
