@@ -11,179 +11,180 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>PACMAN 2</h1>
-        <div   id="cuerpo">
-            <script>
-                var arrayMapa = [["x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x"],
-                    ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
-                    ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x"],
-                    ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x"],
-                    ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
-                    ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", " ", "x", "x"],
-                    ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", " ", " ", " ", " ", "x", " ", "x", "x", "x", "x", "x", " ", "x", "x"],
-                    ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", " ", "x", " ", " ", " ", " ", " ", " ", " ", "x", "x"],
-                    ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
-                    ["x", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", " ", " ", " ", " ", "x", " ", " ", " ", " ", "x", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
-                    ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
-                    ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
-                    ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
-                    ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
-                    ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
-                    ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
-                    ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
-                    ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
-                    ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
-                    ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", "x", "x", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
-                    ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", " ", "x", "x", "x", "x", "x"],
-                    ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", " ", "x", "x", "x", "x", "x"],
-                    ["x", " ", " ", " ", " ", " ", "x", " ", " ", " ", " ", "x", " ", "x", "x", "x", " ", " ", " ", " ", " ", " ", "x", "x", " ", " ", " ", " ", " ", "x"],
-                    ["x", "x", "x", "x", "x", " ", "x", " ", "x", "x", " ", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x"],
-                    ["x", "x", "x", "x", "x", " ", "x", " ", "x", "x", " ", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x"],
-                    ["x", " ", " ", " ", " ", " ", " ", " ", "x", "x", " ", " ", " ", " ", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x"],
-                    ["x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", " ", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
-                    ["x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", " ", "x", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x"],
-                    ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
-                    ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x"]];
+        <script>
+            var arrayMapa = [["x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x"],
+                ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
+                ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x"],
+                ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x"],
+                ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
+                ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", " ", "x", "x"],
+                ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", " ", " ", " ", " ", "x", " ", "x", "x", "x", "x", "x", " ", "x", "x"],
+                ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", " ", "x", " ", " ", " ", " ", " ", " ", " ", "x", "x"],
+                ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
+                ["x", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", " ", " ", " ", " ", "x", " ", " ", " ", " ", "x", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
+                ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
+                ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", " ", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
+                ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
+                ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
+                ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
+                ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
+                ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
+                ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
+                ["x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", "x", "x", "x", "x", "x"],
+                ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", "x", "x", "x", "x", "x", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
+                ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", " ", "x", "x", "x", "x", "x"],
+                ["x", " ", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", " ", "x", "x", "x", "x", "x"],
+                ["x", " ", " ", " ", " ", " ", "x", " ", " ", " ", " ", "x", " ", "x", "x", "x", " ", " ", " ", " ", " ", " ", "x", "x", " ", " ", " ", " ", " ", "x"],
+                ["x", "x", "x", "x", "x", " ", "x", " ", "x", "x", " ", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x"],
+                ["x", "x", "x", "x", "x", " ", "x", " ", "x", "x", " ", "x", " ", "x", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x"],
+                ["x", " ", " ", " ", " ", " ", " ", " ", "x", "x", " ", " ", " ", " ", "x", "x", " ", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", "x", "x", "x"],
+                ["x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", " ", "x", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
+                ["x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", " ", "x", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x"],
+                ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
+                ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x"]];
 
-                var jugador = new Array(4);
-                var fantasma1 = new Array(3);
-                var fantasma2 = new Array(3);
-                var fantasma3 = new Array(3);
-                jugador = ubicarPersonajes(jugador);
-                fantasma1 = ubicarPersonajes(fantasma1);
-                fantasma2 = ubicarPersonajes(fantasma2);
-                fantasma3 = ubicarPersonajes(fantasma3);
+            var jugador = new Array(4);
+            var fantasma1 = new Array(3);
+            var fantasma2 = new Array(3);
+            var fantasma3 = new Array(3);
+            jugador = ubicarPersonajes(jugador);
+            fantasma1 = ubicarPersonajes(fantasma1);
+            fantasma2 = ubicarPersonajes(fantasma2);
+            fantasma3 = ubicarPersonajes(fantasma3);
+            cargarMapa();
+            var movimiento = setInterval(function () {
+                jugador = moverPersonajes(jugador);
+                fantasma1 = moverPersonajes(fantasma1);
+                fantasma2 = moverPersonajes(fantasma2);
+                fantasma3 = moverPersonajes(fantasma3);
+                borrarBody();
                 cargarMapa();
-                var movimiento = setInterval(function () {
-                    jugador = moverPersonajes(jugador);
-                    borrarBody();
-                    cargarMapa();
-                    
-                }, 1000);
-                function cargarMapa() {
-                    arrayMapa[fantasma1[0]][fantasma1[1]] = "P";
-                    arrayMapa[fantasma2[0]][fantasma2[1]] = "P";
-                    arrayMapa[fantasma3[0]][fantasma3[1]] = "P";
-                    arrayMapa[jugador[0]][jugador[1]] = "J";
-                    for (var vertical = 0; vertical < arrayMapa.length; vertical++) {
-                        for (var horizontal = 0; horizontal < arrayMapa[vertical].length; horizontal++) {
-                            if (arrayMapa[vertical][horizontal] == ' ') {
-                                document.write("#" + " ");
-                            } else {
-                                if (arrayMapa[vertical][horizontal] == "P") {
-                                    document.write(" ");
-                                }
-                                if (arrayMapa[vertical][horizontal] == "J") {
-                                    document.write(" ");
-                                }
-                                document.write(arrayMapa[vertical][horizontal] + " ");
+
+            }, 1000);
+            function cargarMapa() {
+                document.write("<h1>PACMAN 2</h1>");
+                arrayMapa[fantasma1[0]][fantasma1[1]] = "P";
+                arrayMapa[fantasma2[0]][fantasma2[1]] = "P";
+                arrayMapa[fantasma3[0]][fantasma3[1]] = "P";
+                arrayMapa[jugador[0]][jugador[1]] = "J";
+                for (var vertical = 0; vertical < arrayMapa.length; vertical++) {
+                    for (var horizontal = 0; horizontal < arrayMapa[vertical].length; horizontal++) {
+                        if (arrayMapa[vertical][horizontal] == ' ') {
+                            document.write("#" + " ");
+                        } else {
+                            if (arrayMapa[vertical][horizontal] == "P") {
+                                document.write(" ");
                             }
+                            if (arrayMapa[vertical][horizontal] == "J") {
+                                document.write(" ");
+                            }
+                            document.write(arrayMapa[vertical][horizontal] + " ");
                         }
-                        document.write("<br>")
                     }
-                    document.write("<br>");
-                    document.write("Fantasma 1 va: " + fantasma1[2] + "<br>");
-                    document.write("Fantasma 2 va: " + fantasma2[2] + "<br>");
-                    document.write("Fantasma 3 va: " + fantasma3[2] + "<br>");
-                    document.write("Jugador va: " + jugador[2] + "<br>");
+                    document.write("<br>")
                 }
-                function ubicarPersonajes(personaje) {
-                    var vertical = 0;
-                    var auxiliarVertical = 0;
-                    var horizontal = 0;
-                    var auxiliarHorizontal = 0;
-                    var direccion = 0;
-                    do {
-                        vertical = aleatorio(0, 29);
-                        horizontal = aleatorio(0, 29);
-                    } while (arrayMapa[vertical][horizontal] != " ");
-                    do {
-                        auxiliarVertical = vertical;
-                        auxiliarHorizontal = horizontal;
-                        direccion = aleatorio(1, 4);
-                        switch (direccion) {
-                            case 1:
-                                auxiliarHorizontal -= 1;
-                                break;
-                            case 2:
-                                auxiliarVertical += 1;
-                                break;
-                            case 3:
-                                auxiliarHorizontal += 1;
-                                break;
-                            case 4:
-                                auxiliarVertical -= 1;
-                                break;
-                        }
-                    } while (arrayMapa[auxiliarVertical][auxiliarHorizontal] != " ");
-                    if (personaje.length < 4) {
-                        personaje = [vertical, horizontal, direccion];
-                    } else {
-                        personaje = [vertical, horizontal, direccion, 0]
-                    }
-                    return personaje;
-                }
-                function aleatorio(min, max) {
-                    return Math.floor(Math.random() * (max - min)) + min;
-                }
-                function moverPersonajes(personaje) {
-                    var auxiliarVertical2 = personaje[0];
-                    var auxiliarHorizontal2 = personaje[1];
-                    var direccion = personaje[2];
+                document.write("<br>");
+                document.write("Fantasma 1 va: " + fantasma1[2] + "<br>");
+                document.write("Fantasma 2 va: " + fantasma2[2] + "<br>");
+                document.write("Fantasma 3 va: " + fantasma3[2] + "<br>");
+                document.write("Jugador va: " + jugador[2] + "<br>");
+            }
+            function ubicarPersonajes(personaje) {
+                var vertical = 0;
+                var auxiliarVertical = 0;
+                var horizontal = 0;
+                var auxiliarHorizontal = 0;
+                var direccion = 0;
+                do {
+                    vertical = aleatorio(0, 29);
+                    horizontal = aleatorio(0, 29);
+                } while (arrayMapa[vertical][horizontal] != " ");
+                do {
+                    auxiliarVertical = vertical;
+                    auxiliarHorizontal = horizontal;
+                    direccion = aleatorio(1, 4);
                     switch (direccion) {
                         case 1:
-                            auxiliarHorizontal2 -= 1;
+                            auxiliarHorizontal -= 1;
                             break;
                         case 2:
-                            auxiliarVertical2 += 1;
+                            auxiliarVertical += 1;
                             break;
                         case 3:
-                            auxiliarHorizontal2 += 1;
+                            auxiliarHorizontal += 1;
                             break;
                         case 4:
-                            auxiliarVertical2 -= 1;
+                            auxiliarVertical -= 1;
                             break;
                     }
-                    if (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] == " ") {
-                        arrayMapa[personaje[0]][personaje[1]]] = " ";
-                        if(personaje.length<4){
-                            personaje=[auxiliarVertical2,auxiliarVertical2,direccion];
-                             }else{
-                                 personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
-                             }  
+                } while (arrayMapa[auxiliarVertical][auxiliarHorizontal] != " ");
+                if (personaje.length < 4) {
+                    personaje = [vertical, horizontal, direccion];
+                } else {
+                    personaje = [vertical, horizontal, direccion, 0]
+                }
+                return personaje;
+            }
+            function aleatorio(min, max) {
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+            function moverPersonajes(personaje) {
+                var auxiliarVertical2 = personaje[0];
+                var auxiliarHorizontal2 = personaje[1];
+                var direccion = personaje[2];
+                switch (direccion) {
+                    case 1:
+                        auxiliarHorizontal2 -= 1;
+                        break;
+                    case 2:
+                        auxiliarVertical2 += 1;
+                        break;
+                    case 3:
+                        auxiliarHorizontal2 += 1;
+                        break;
+                    case 4:
+                        auxiliarVertical2 -= 1;
+                        break;
+                }
+                if (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] == " ") {
+                    arrayMapa[personaje[0]][personaje[1]] = " ";
+                    if (personaje.length < 4) {
+                        personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion];
                     } else {
-                        do{
-                       auxiliarvertical2=personaje[0];
-                       auxiliarhorizoantal2=personaje[1];
-                            direccion=aleatorio(1,4):
-                              switch (direccion) {
-                        case 1:
-                            auxiliarHorizontal2 -= 1;
-                            break;
-                        case 2:
-                            auxiliarVertical2 += 1;
-                            break;
-                        case 3:
-                            auxiliarHorizontal2 += 1;
-                            break;
-                        case 4:
-                            auxiliarVertical2 -= 1;
-                            break;
-                    }   
-                        }while(arrayMapa[auxiliarVertical2][auxiliarHorizontal2] != " ");
-                         arrayMapa[personaje[0]][personaje[1]]] = " ";
-                        if(personaje.length<4){
-                            personaje=[auxiliarVertical2,auxiliarVertical2,direccion];
-                             }else{
-                                 personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
-                             }  
+                        personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
                     }
-                    return personaje;
+                } else {
+                    do {
+                        auxiliarVertical2 = personaje[0];
+                        auxiliarHorizontal2 = personaje[1];
+                        direccion = aleatorio(1, 5);
+                        switch (direccion) {
+                            case 1:
+                                auxiliarHorizontal2 -= 1;
+                                break;
+                            case 2:
+                                auxiliarVertical2 += 1;
+                                break;
+                            case 3:
+                                auxiliarHorizontal2 += 1;
+                                break;
+                            case 4:
+                                auxiliarVertical2 -= 1;
+                                break;
+                        }
+                    } while (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] != " ");
+                    arrayMapa[personaje[0]][personaje[1]] = " ";
+                    if (personaje.length < 4) {
+                        personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion];
+                    } else {
+                        personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
+                    }
                 }
-                function borrarBody(){
-                    cuerpo.innerHTML="cuerpo";
-                }
-            </script>
-        </div>
+                return personaje;
+            }
+            function borrarBody() {
+                document.body.innerHTML = "";
+            }
+        </script>
     </body>
 </html>
