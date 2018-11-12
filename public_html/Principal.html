@@ -57,7 +57,6 @@ and open the template in the editor.
                 var movimiento = setInterval(function () {
                     jugador = moverPersonajes(jugador);
                     cargarMapa();
-
                 }, 1000);
                 function cargarMapa() {
                     arrayMapa[fantasma1[0]][fantasma1[1]] = "P";
@@ -69,10 +68,10 @@ and open the template in the editor.
                             if (arrayMapa[vertical][horizontal] == ' ') {
                                 document.write("#" + " ");
                             } else {
-                                if (arrayMapa[vertical][horizontal] == "p") {
+                                if (arrayMapa[vertical][horizontal] == "P") {
                                     document.write(" ");
                                 }
-                                if (arrayMapa[vertical][horizontal] == "j") {
+                                if (arrayMapa[vertical][horizontal] == "J") {
                                     document.write(" ");
                                 }
                                 document.write(arrayMapa[vertical][horizontal] + " ");
@@ -144,29 +143,38 @@ and open the template in the editor.
                             break;
                     }
                     if (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] == " ") {
-                        arrayMapa[personaje[0][personaje[1]]] = " ";
-                        personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
+                        arrayMapa[personaje[0]][personaje[1]]] = " ";
+                        if(personaje.length<4){
+                            personaje=[auxiliarVertical2,auxiliarVertical2,direccion];
+                             }else{
+                                 personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
+                             }  
                     } else {
-//                        do {
-//                            var auxiliarVertical2 = personaje[0];
-//                            var auxiliarHorizontal2 = personaje[1];
-//                            var auxiliarDireccion = aleatorio(1, 4);
-//                            switch (auxiliarDireccion) {
-//                                case 1:
-//                                    auxiliarHorizontal2 -= 1;
-//                                    break;
-//                                case 2:
-//                                    auxiliarVertical2 += 1;
-//                                    break;
-//                                case 3:
-//                                    auxiliarHorizontal2 += 1;
-//                                    break;
-//                                case 4:
-//                                    auxiliarVertical2 -= 1;
-//                                    break;
-//                            }
-//                        } while (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] != " ");
-                       
+                        do{
+                       auxiliarvertical2=personaje[0];
+                       auxiliarhorizoantal2=personaje[1];
+                            direccion=aleatorio(1,4):
+                              switch (direccion) {
+                        case 1:
+                            auxiliarHorizontal2 -= 1;
+                            break;
+                        case 2:
+                            auxiliarVertical2 += 1;
+                            break;
+                        case 3:
+                            auxiliarHorizontal2 += 1;
+                            break;
+                        case 4:
+                            auxiliarVertical2 -= 1;
+                            break;
+                    }   
+                        }while(arrayMapa[auxiliarVertical2][auxiliarHorizontal2] != " ");
+                         arrayMapa[personaje[0]][personaje[1]]] = " ";
+                        if(personaje.length<4){
+                            personaje=[auxiliarVertical2,auxiliarVertical2,direccion];
+                             }else{
+                                 personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
+                             }  
                     }
                     return personaje;
                 }
