@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body  id="cuerpo">
         <div>
             <h1>PACMAN 2</h1>
             <script>
@@ -56,7 +56,9 @@ and open the template in the editor.
                 cargarMapa();
                 var movimiento = setInterval(function () {
                     jugador = moverPersonajes(jugador);
+                    borrarBody();
                     cargarMapa();
+                    
                 }, 1000);
                 function cargarMapa() {
                     arrayMapa[fantasma1[0]][fantasma1[1]] = "P";
@@ -177,6 +179,9 @@ and open the template in the editor.
                              }  
                     }
                     return personaje;
+                }
+                function borrarBody(){
+                    cuerpo.innerHTML="cuerpo";
                 }
             </script>
         </div>
