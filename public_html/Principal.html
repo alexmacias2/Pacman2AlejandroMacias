@@ -60,7 +60,7 @@ and open the template in the editor.
                 fantasma3 = moverPersonajes(fantasma3);
                 borrarBody();
                 cargarMapa();
-            }, 1000);
+            }, 500);
             function cargarMapa() {
                 document.write("<h1>PACMAN 2</h1>");
                 arrayMapa[fantasma1[0]][fantasma1[1]] = "P";
@@ -132,6 +132,7 @@ and open the template in the editor.
                 var auxiliarVertical2 = personaje[0];
                 var auxiliarHorizontal2 = personaje[1];
                 var direccion = personaje[2];
+                var colisionador = [auxiliarVertical2, auxiliarVertical2, direccion];
                 switch (direccion) {
                     case 1:
                         auxiliarHorizontal2 -= 1;
@@ -174,24 +175,21 @@ and open the template in the editor.
                                 break;
                         }
                     } while (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] == "x");
-                    arrayMapa[personaje[0]][personaje[1]] = " ";
                     if (personaje.length < 4) {
+                        arrayMapa[personaje[0]][personaje[1]] = " ";
                         personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion];
                     } else {
+                        arrayMapa[personaje[0]][personaje[1]] = " ";
                         personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
                     }
                 }
                 return personaje;
             }
             function comprobarColision(colisionador) {
-                var auxiliarVertical3=colisionador[0];
-                var auxiliarHorizontal3=colisionador[1];
-                switch(colisionador[2]){
-                    case 1:if(auxiliarHorizontal3-1=="P"){alert("Colision")};break;
-                    case 2:if(auxiliarVertical3+1=="P"){alert("Colision")};break;
-                    case 3:if(auxiliarHorizontal3+1=="P"){alert("Colision")};break;
-                    case 4:if(auxiliarVertical3-1=="P"){alert("Colision")};break;
+                if (arrayMapa[colisionador[0]][colisionador[1]] == "P") {
+                    alert("Colision detectada");
                 }
+
             }
             function borrarBody() {
                 document.body.innerHTML = "";
