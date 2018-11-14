@@ -11,6 +11,12 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <img src="blanco.png"    id="blanco"    style="display: none;">
+        <img src="ladrillo.png"       id="ladrillo"       style="display: none;">
+        <img src="pacman.png" id="pacman" style="display: none;">
+        <img src="fantasma.png" id="fantasma" style="display: none;">
+        
+<!--        <canvas id="myCanvas" width="600" height="600"></canvas>            -->
         <script>
             var arrayMapa = [["x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x"],
                 ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
@@ -46,29 +52,29 @@ and open the template in the editor.
             var fantasma1 = new Array(3);
             var fantasma2 = new Array(3);
             var fantasma3 = new Array(3);
-            var direccionJugador = 0;
+            var direccionJugador = 0;//variable que guardará la tecla pulsada por el jugador
             jugador = ubicarPersonajes(jugador);
             fantasma1 = ubicarPersonajes(fantasma1);
             fantasma2 = ubicarPersonajes(fantasma2);
             fantasma3 = ubicarPersonajes(fantasma3);
-            cargarMapa();
+            cargarMapa();//cargará el mapa con los personajes ubicados
             var movimiento = setInterval(function () {
-                if(comprobarSiPuedeIrEnLaDireccionPulsada()==true){
-                    jugador[2]=direccionJugador;
+                if (comprobarSiPuedeIrEnLaDireccionPulsada() == true) {//compruebas si el jugador puede moverse en la direccion pulsada,y si se puede la asigna
+                    jugador[2] = direccionJugador;
                 }
-                jugador = moverPersonajes(jugador);
-                comprobarColision(jugador);
+                jugador = moverPersonajes(jugador);//funcion que mueve a los personajes
+                comprobarColision(jugador);//comprobamos si hay colision cada vez que hacemos un movimiento
                 fantasma1 = moverPersonajes(fantasma1);
                 comprobarColision(jugador);
                 fantasma2 = moverPersonajes(fantasma2);
                 comprobarColision(jugador);
                 fantasma3 = moverPersonajes(fantasma3);
                 comprobarColision(jugador);
-                borrarBody();
+                borrarBody();//funcion que borra el cuerpo del documento para que se aprecie el movimiento
                 document.body.addEventListener("keydown", function (event) {
                     direccionJugador = event.key;
                 }, false);
-                cargarMapa();
+                cargarMapa();//despues de mover volvermos a cargar el mapa
             }, 1000);
             function cargarMapa() {
                 document.write("<h1>PACMAN 2</h1>");
@@ -76,6 +82,7 @@ and open the template in the editor.
                 arrayMapa[fantasma2[0]][fantasma2[1]] = "P";
                 arrayMapa[fantasma3[0]][fantasma3[1]] = "P";
                 arrayMapa[jugador[0]][jugador[1]] = "J";
+                //pinta(); funcion que deberia cargar el canvas pero me dice que el elemento canvas es nulo
                 for (var vertical = 0; vertical < arrayMapa.length; vertical++) {
                     for (var horizontal = 0; horizontal < arrayMapa[vertical].length; horizontal++) {
                         if (arrayMapa[vertical][horizontal] == ' ') {
@@ -97,19 +104,19 @@ and open the template in the editor.
                 document.write("Fantasma 2 va: " + fantasma2[2] + "<br>");
                 document.write("Fantasma 3 va: " + fantasma3[2] + "<br>");
                 document.write("Jugador va: " + jugador[2] + "<br>");
-                document.write("Jugador quiere ir en" + jugador[3]);
+//                document.write("Jugador quiere ir en" + jugador[3]);
             }
             function ubicarPersonajes(personaje) {
                 var vertical = 0;
-                var auxiliarVertical = 0;
+                var auxiliarVertical = 0;//creamos auxiliares para no cambiar la dirección del personaje
                 var horizontal = 0;
                 var auxiliarHorizontal = 0;
                 var direccion = 0;
-                do {
+                do {//generamos una posición aleatoria siempre que la anterior fuera inválida
                     vertical = aleatorio(0, 29);
                     horizontal = aleatorio(0, 29);
                 } while (arrayMapa[vertical][horizontal] != " ");
-                do {
+                do {//lo mismo que con la posición para la dirección
                     auxiliarVertical = vertical;
                     auxiliarHorizontal = horizontal;
                     direccion = aleatorio(1, 4);
@@ -128,7 +135,7 @@ and open the template in the editor.
                             break;
                     }
                 } while (arrayMapa[auxiliarVertical][auxiliarHorizontal] != " ");
-                if (personaje.length < 4) {
+                if (personaje.length < 4) {//si la lopngitud del array es menor a 4 sera un fantasma por tanto solo pasamos las 3 variables
                     personaje = [vertical, horizontal, direccion];
                 } else {
                     personaje = [vertical, horizontal, direccion, 0]
@@ -139,9 +146,9 @@ and open the template in the editor.
                 return Math.floor(Math.random() * (max - min)) + min;
             }
             function moverPersonajes(personaje) {
-                var auxiliarVertical2 = personaje[0];
+                var auxiliarVertical2 = personaje[0];//igual que antes hacemos auxiliares
                 var auxiliarHorizontal2 = personaje[1];
-                direccion=personaje[2];
+                direccion = personaje[2];
                 switch (direccion) {
                     case 1:
                         auxiliarHorizontal2 -= 1;
@@ -156,7 +163,7 @@ and open the template in the editor.
                         auxiliarVertical2 -= 1;
                         break;
                 }
-                if (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] != "x") {
+                if (arrayMapa[auxiliarVertical2][auxiliarHorizontal2] != "x") {//si podemos ir en la dirección vamos, si no, generamos otra
                     if (personaje.length < 4) {
                         arrayMapa[personaje[0]][personaje[1]] = " ";
                         personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion];
@@ -168,7 +175,7 @@ and open the template in the editor.
                     do {
                         auxiliarVertical2 = personaje[0];
                         auxiliarHorizontal2 = personaje[1];
-                        direccion=aleatorio(1,5);
+                        direccion = aleatorio(1, 5);
                         switch (direccion) {
                             case 1:
                                 auxiliarHorizontal2 -= 1;
@@ -188,7 +195,7 @@ and open the template in the editor.
                         arrayMapa[personaje[0]][personaje[1]] = " ";
                         personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion];
                     } else {
-                        direccionJugador=direccion;
+                        direccionJugador = direccion;
                         arrayMapa[personaje[0]][personaje[1]] = " ";
                         personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, personaje[3]];
                     }
@@ -226,15 +233,33 @@ and open the template in the editor.
                         break;
                 }
                 if (arrayMapa[verticalJugador][horizontalJugador] != "x") {
-                    jugador[3]=direccionJugador;
+                    jugador[3] = direccionJugador;
                     return true;
                 } else {
-                    jugador[3]=direccionJugador;
+                    jugador[3] = direccionJugador;
                     return false;
                 }
             }
-
-
+//                function pinta() {
+//                    var canvas = document.getElementById("myCanvas");
+//                    var ctx=canvas.getContext("2d");
+//                    ctx.clearRect(0,0,600,600);
+//                    var img;
+//                    for (var i = 0; i < arrayMapa.length; i++) {
+//                        for (var j = 0; j < arrayMapa[i].length; j++) {
+//                            if (arrayMapa[i][j] == "x") {
+//                                img = document.getElementById("ladrillo");
+//                            } else if (arrayMapa[i][j] == " ") {
+//                                img = document.getElementById("blanco");
+//                            } else if (arrayMapa[i][j] == "P") {
+//                                img = document.getElementById("fantasma");
+//                            } else {
+//                                img = document.getElementById("pacman");
+//                            }
+//                            ctx.drawImage(img, i * 100, j * 100, 50, 50);
+//                        }
+//                    }
+//                }
         </script>
     </body>
 </html>
