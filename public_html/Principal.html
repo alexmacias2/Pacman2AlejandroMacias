@@ -42,25 +42,34 @@ and open the template in the editor.
                 ["x", " ", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", " ", "x", "x", " ", "x", "x", " ", "x", "x", "x", "x", " ", "x", "x", "x", " ", "x"],
                 ["x", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
                 ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x"]];
-
             var jugador = new Array(4);
             var fantasma1 = new Array(3);
             var fantasma2 = new Array(3);
             var fantasma3 = new Array(3);
+            var direccionJugador = 0;
             jugador = ubicarPersonajes(jugador);
             fantasma1 = ubicarPersonajes(fantasma1);
             fantasma2 = ubicarPersonajes(fantasma2);
             fantasma3 = ubicarPersonajes(fantasma3);
             cargarMapa();
             var movimiento = setInterval(function () {
+                if(comprobarSiPuedeIrEnLaDireccionPulsada()==true){
+                    jugador[2]=direccionJugador;
+                }
                 jugador = moverPersonajes(jugador);
                 comprobarColision(jugador);
                 fantasma1 = moverPersonajes(fantasma1);
+                comprobarColision(jugador);
                 fantasma2 = moverPersonajes(fantasma2);
+                comprobarColision(jugador);
                 fantasma3 = moverPersonajes(fantasma3);
+                comprobarColision(jugador);
                 borrarBody();
+                document.body.addEventListener("keydown", function (event) {
+                    direccionJugador = event.key;
+                }, false);
                 cargarMapa();
-            }, 500);
+            }, 1000);
             function cargarMapa() {
                 document.write("<h1>PACMAN 2</h1>");
                 arrayMapa[fantasma1[0]][fantasma1[1]] = "P";
@@ -88,6 +97,7 @@ and open the template in the editor.
                 document.write("Fantasma 2 va: " + fantasma2[2] + "<br>");
                 document.write("Fantasma 3 va: " + fantasma3[2] + "<br>");
                 document.write("Jugador va: " + jugador[2] + "<br>");
+                document.write("Jugador quiere ir en" + jugador[3]);
             }
             function ubicarPersonajes(personaje) {
                 var vertical = 0;
@@ -131,8 +141,7 @@ and open the template in the editor.
             function moverPersonajes(personaje) {
                 var auxiliarVertical2 = personaje[0];
                 var auxiliarHorizontal2 = personaje[1];
-                var direccion = personaje[2];
-                var colisionador = [auxiliarVertical2, auxiliarVertical2, direccion];
+                direccion=personaje[2];
                 switch (direccion) {
                     case 1:
                         auxiliarHorizontal2 -= 1;
@@ -153,13 +162,13 @@ and open the template in the editor.
                         personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion];
                     } else {
                         arrayMapa[personaje[0]][personaje[1]] = " ";
-                        personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
+                        personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, personaje[3]];
                     }
                 } else {
                     do {
                         auxiliarVertical2 = personaje[0];
                         auxiliarHorizontal2 = personaje[1];
-                        direccion = aleatorio(1, 5);
+                        direccion=aleatorio(1,5);
                         switch (direccion) {
                             case 1:
                                 auxiliarHorizontal2 -= 1;
@@ -179,8 +188,9 @@ and open the template in the editor.
                         arrayMapa[personaje[0]][personaje[1]] = " ";
                         personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion];
                     } else {
+                        direccionJugador=direccion;
                         arrayMapa[personaje[0]][personaje[1]] = " ";
-                        personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, 0];
+                        personaje = [auxiliarVertical2, auxiliarHorizontal2, direccion, personaje[3]];
                     }
                 }
                 return personaje;
@@ -194,6 +204,37 @@ and open the template in the editor.
             function borrarBody() {
                 document.body.innerHTML = "";
             }
+            function comprobarSiPuedeIrEnLaDireccionPulsada() {
+                var verticalJugador = jugador[0];
+                var horizontalJugador = jugador[1];
+                switch (direccionJugador) {
+                    case "ArrowUp":
+                        direccionJugador = 4;
+                        verticalJugador += 1;
+                        break;
+                    case "ArrowDown":
+                        direccionJugador = 2;
+                        verticalJugador -= 1;
+                        break;
+                    case "ArrowLeft":
+                        direccionJugador = 1;
+                        horizontalJugador -= 1;
+                        break;
+                    case "ArrowRight":
+                        direccionJugador = 3;
+                        horizontalJugador += 1;
+                        break;
+                }
+                if (arrayMapa[verticalJugador][horizontalJugador] != "x") {
+                    jugador[3]=direccionJugador;
+                    return true;
+                } else {
+                    jugador[3]=direccionJugador;
+                    return false;
+                }
+            }
+
+
         </script>
     </body>
 </html>
